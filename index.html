@@ -44,7 +44,7 @@
   }
  .logo { display: flex; align-items: center; }
 .logo img {
-  height: 500px;
+  height: 300px;
   width: auto;
   display: block;
 }
@@ -118,11 +118,13 @@
   .tile:hover img { transform: scale(1.025); filter: grayscale(0%); }
 
   .tile .cap {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-top: 26px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  margin-top: 30px;
+}
   .tile .cap .name {
     font-size: clamp(1.3rem, 2.6vw, 2rem);
     font-weight: 400;
