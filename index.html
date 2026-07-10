@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MX STUDIO — Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #111111;
+    --grey: #8C8C8C;
+    --line: #EBEBEB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+
+  /* ---------- nav ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 5vw;
+    border-bottom: 1px solid var(--line);
+  }
+  .logo {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  nav ul { display: flex; gap: 36px; }
+  nav a {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    position: relative;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -4px;
+    height: 1px;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.25s ease;
+  }
+  nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+  /* ---------- intro strip ---------- */
+  .intro {
+    padding: 64px 5vw 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .intro h1 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 300;
+    max-width: 620px;
+    line-height: 1.5;
+  }
+  .intro .count {
+    font-size: 0.78rem;
+    color: var(--grey);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  /* ---------- work list (vertical) ---------- */
+  .grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .tile {
+    position: relative;
+    display: block;
+    padding: 7vh 5vw;
+    border-top: 1px solid var(--line);
+  }
+  .tile:last-child { border-bottom: 1px solid var(--line); }
+
+  .tile figure {
+    overflow: hidden;
+    background: #F2F2F2;
+  }
+  .tile img {
+    width: 100%;
+    max-height: 78vh;
+    object-fit: cover;
+    display: block;
+    transition: transform 1s cubic-bezier(.2,.7,.2,1), filter 0.5s;
+    filter: grayscale(6%);
+  }
+  .tile:hover img { transform: scale(1.025); filter: grayscale(0%); }
+
+  .tile .cap {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 26px;
+  }
+  .tile .cap .name {
+    font-size: clamp(1.3rem, 2.6vw, 2rem);
+    font-weight: 400;
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+  .tile .cap .name .idx {
+    font-size: 0.8rem;
+    color: var(--grey);
+    font-weight: 300;
+  }
+  .tile .cap .cat {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey);
+    white-space: nowrap;
+    margin-left: 24px;
+  }
+
+  /* ---------- about ---------- */
+  .about {
+    padding: 14vh 5vw;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 8vw;
+    border-top: 1px solid var(--line);
+  }
+  .about .label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+  .about p {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.55;
+    max-width: 620px;
+  }
+  .about p + p {
+    margin-top: 24px;
+    font-size: 1rem;
+    color: var(--grey);
+  }
+
+  /* ---------- contact / footer ---------- */
+  footer {
+    padding: 10vh 5vw 5vh;
+    border-top: 1px solid var(--line);
+  }
+  footer .label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 28px;
+    display: block;
+  }
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 60px;
+    margin-bottom: 90px;
+  }
+  .contact-row a {
+    font-size: clamp(1.4rem, 3.4vw, 2.4rem);
+    font-weight: 300;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, opacity 0.2s;
+  }
+  .contact-row a:hover { border-color: var(--ink); }
+
+  .foot-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.75rem;
+    color: var(--grey);
+    letter-spacing: 0.03em;
+  }
+  .socials { display: flex; gap: 24px; }
+  .socials a { color: var(--grey); transition: color 0.2s; }
+  .socials a:hover { color: var(--ink); }
+
+  @media (max-width: 900px) {
+    .about { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    nav ul { gap: 20px; }
+    .contact-row { flex-direction: column; gap: 16px; }
+    .tile { padding: 5vh 6vw; }
+    .tile .cap { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .tile .cap .cat { margin-left: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; }
+  }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">MX STUDIO</div>
+  <nav>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="intro">
+  <h1>摄影与视觉设计工作室，记录具体的场景与材质。</h1>
+  <span class="count">01 — 05</span>
+</section>
+
+<section class="grid" id="work">
+
+  <a class="tile" href="#contact">
+    <figure><img src="https://picsum.photos/id/1015/1600/1000" alt="河谷 · 静物系列" loading="lazy"></figure>
+    <div class="cap">
+      <span class="name"><span class="idx">01</span>河谷 · 静物系列</span>
+      <span class="cat">商业摄影 · 2026</span>
+    </div>
+  </a>
+
+  <a class="tile" href="#contact">
+    <figure><img src="https://picsum.photos/id/1025/1600/1000" alt="城市边界" loading="lazy"></figure>
+    <div class="cap">
+      <span class="name"><span class="idx">02</span>城市边界</span>
+      <span class="cat">品牌视觉 · 2025</span>
+    </div>
+  </a>
+
+  <a class="tile" href="#contact">
+    <figure><img src="https://picsum.photos/id/1039/1600/1000" alt="灰度练习" loading="lazy"></figure>
+    <div class="cap">
+      <span class="name"><span class="idx">03</span>灰度练习</span>
+      <span class="cat">个人项目 · 2025</span>
+    </div>
+  </a>
+
+  <a class="tile" href="#contact">
+    <figure><img src="https://picsum.photos/id/1043/1600/1000" alt="材质研究" loading="lazy"></figure>
+    <div class="cap">
+      <span class="name"><span class="idx">04</span>材质研究</span>
+      <span class="cat">设计 · 2024</span>
+    </div>
+  </a>
+
+  <a class="tile" href="#contact">
+    <figure><img src="https://picsum.photos/id/1069/1600/1000" alt="光的形状" loading="lazy"></figure>
+    <div class="cap">
+      <span class="name"><span class="idx">05</span>光的形状</span>
+      <span class="cat">摄影 · 2024</span>
+    </div>
+  </a>
+
+</section>
+
+<section class="about" id="about">
+  <span class="label">About</span>
+  <div>
+    <p>Here is Mengxue (Doris)，I am running MX Studio to optimizing design management to save your costs, tailoring spaces to fit your life. </p>
+    <p>Grounded in 14 years of experience spanning art, design, and architecture, MX Studio was founded on a core belief: architecture is neither a symbol nor a narrative—it is a vessel and a medium. We define spaces through floors, ceilings, and walls to provide comfort and safety, while opening doors and windows to inspire freedom and joy.
+
+Beyond individual users, architecture holds a profound social responsibility, impacting industries and the environment alike. Our mission is to deliver responsible, purposeful design that creates lasting value. By optimizing design management to save costs and tailoring spaces to enrich lives, we let exceptional work drive our practice forward.。</p>
+  </div>
+</section>
+
+<footer id="contact">
+  <span class="label">开始一个项目</span>
+  <div class="contact-row">
+    <a href="mailto:mengxuedeng@outlook.com">mengxuedeng@outlook.com</a>
+    <a href="tel:+46-0760633882">++46-0760633882</a>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 MX STUDIO</span>
+    <div class="socials">
+      <a href="#">Instagram</a>
+      <a href="#">豆瓣</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
