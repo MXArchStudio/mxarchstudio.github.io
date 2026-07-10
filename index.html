@@ -30,24 +30,23 @@
 
   /* ---------- nav ---------- */
   header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(6px);
-    display: flex;
-   flex-direction: column;
+  position: relative;
+  top: 0;
+  z-index: 50;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(6px);
+  display: flex;
   align-items: center;
-  gap: 20px;
-    padding: 26px 5vw;
-    border-bottom: 1px solid var(--line);
+  justify-content: space-between;
+  padding: 26px 5vw;
+  border-bottom: 1px solid var(--line);
   }
  .logo { display: flex; align-items: center; }
-.logo img {
+ .logo img {
   height: 300px;
   width: auto;
   display: block;
-}
+  }
   nav ul { display: flex; gap: 36px; }
   nav a {
     font-size: 0.78rem;
