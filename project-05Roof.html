@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healing the Tulou — MX STUDIO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #111111;
+    --grey: #8C8C8C;
+    --line: #EBEBEB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+
+  /* ---------- logo bar (non-sticky) ---------- */
+  .logo-bar {
+    padding: 26px 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-bar .logo img {
+    height: 300px;
+    width: auto;
+    display: block;
+  }
+
+  /* ---------- nav (sticky) ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 5vw;
+    border-bottom: 1px solid var(--line);
+  }
+  header .back {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  header nav ul { display: flex; gap: 36px; }
+  header nav a {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  /* ---------- project header ---------- */
+  .project-head {
+    padding: 8vh 5vw 5vh;
+    text-align: center;
+  }
+  .project-head .idx {
+    font-size: 0.75rem;
+    color: var(--grey);
+    font-weight: 700;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .project-head h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 400;
+  }
+  .project-head .meta {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: var(--grey);
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  /* ---------- hero image ---------- */
+  .hero-img {
+    padding: 0 5vw;
+  }
+  .hero-img img {
+  width: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  background: #F2F2F2;
+  margin: 0 auto;
+  }
+
+  /* ---------- description ---------- */
+  .desc {
+  max-width: 1000px;
+  margin: 3vh auto;
+  margin-bottom: 60px;
+  padding: 0 5vw;
+  }
+  .desc p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--ink);
+    text-align: center;
+  }
+  .desc p + p { margin-top: 20px; }
+
+  /* ---------- gallery ---------- */
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    padding: 0 5vw 10vh;
+  }
+  .gallery img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    background: #F2F2F2;
+  }
+
+  /* ---------- prev/next ---------- */
+  .project-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2vh 5vw;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(6px);
+  border-top: 1px solid var(--line);
+  font-size: 1rem;
+  z-index: 40;
+  }
+  .project-nav a { color: var(--grey); }
+  .project-nav a:hover { color: var(--ink); }
+
+  /* ---------- contact / footer ---------- */
+  footer {
+    padding: 10vh 5vw 5vh;
+    border-top: 1px solid var(--line);
+    padding-bottom: 80px;
+  }
+  footer .label {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #444444;
+    margin-bottom: 28px;
+    display: block;
+  }
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 60px;
+    margin-bottom: 60px;
+  }
+  .contact-row a {
+    font-size: 1rem;
+    font-weight: 300;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, opacity 0.2s;
+  }
+  .contact-row a:hover { border-color: var(--ink); }
+
+  .foot-bottom {
+    display: flex;
+    justify-content: space-between;
+    /*align-items: center;*/
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.75rem;
+    color: var(--grey);
+  }
+
+  @media (max-width: 560px) {
+    .contact-row { flex-direction: column; gap: 16px; }
+  }
+
+  @media (max-width: 700px) {
+  .project-head h1 { font-size: 1.8rem; }
+  .project-head .meta { font-size: 0.75rem; gap: 14px; }
+  .desc p { font-size: 1rem; }
+  .desc { margin: 30px auto; padding: 0 6vw; }
+  .logo-bar .logo img { height: 120px; }
+  footer .label { font-size: 1.1rem; }
+  .contact-row a { font-size: 0.95rem; }
+  .gallery-tulou img { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="logo-bar">
+  <a href="index.html" class="logo"><img src="logo.png" alt="MX Architecture Studio"></a>
+</div>
+
+<header>
+  <a href="index.html" class="back">← Work</a>
+  <nav>
+    <ul>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="project-head">
+  <h1>Genius Loci</h1>
+  <div class="meta">
+    <span>2022</span>
+    <span>competition work with Bin Jia&Jingyuan Zheng</span>
+    <span>Location:Nanjing City, Jiangsu Province, China.</span>
+  </div>
+  </section>
+
+<section class="desc">
+This is a competition project which requires us to design three infrastructures for the camping site in the given plot. Because of the tranquil, organic scenario in this park, we decided to follow the natural topographic changes and preserve the landscape of the site as much as possible. The challenge in this concept is how to minimize the attachment between the building and the ground, and suspend the ground floors through cores and tensioned structures. 
+As buildings require to be able to serve camping activities, we scatter them alongside an artless, circular walk path in that to create a private zone around woods whist giving passengers the convenient access into the buildings. 
+Apart from the environmental and functional context, we also hope the buildings could be "easy to build" and "easy to move" by using steel structures, contributing to the sustainable society.
+</section>
+
+<style>
+  .gallery-loci img {
+    width: 50%;
+    max-width: 800px;
+    height: auto;
+    /*
+    border: 1px solid #d8d8d8;
+    padding: 8px;
+    box-sizing: border-box;
+    */
+  }
+</style>
+  
+<section class="gallery-loci"
+  style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 60px;
+  ">
+  <img src="image-cover2.jpg" alt="Project photo 1 cover"style="width: 90%; max-width: 1600px; height: auto;">
+  <img src="image-loci1.jpg" alt="Project photo 1">
+  <img src="image-loci2.jpg" alt="Project photo 2">
+  <img src="image-loci3.jpg" alt="Project photo 3">
+  <img src="image-loci4.jpg" alt="Project photo 4">
+  <img src="image-loci5.jpg" alt="Project photo 5">
+  <img src="image-loci6.jpg" alt="Project photo 6">
+  <img src="image-loci7.jpg" alt="Project photo 7">
+  <img src="image-loci8.jpg" alt="Project photo 8">
+  <img src="image-loci9.jpg" alt="Project photo 9">
+  <img src="image-loci10.jpg" alt="Project photo 10">
+  <img src="image-loci11.jpg" alt="Project photo 11">
+  <img src="image-loci14.jpg" alt="Project photo 14" style="width: 90%; max-width: 1600px; height: auto;">
+  <img src="image-loci12.jpg" alt="Project photo 12">
+  <img src="image-loci13.jpg" alt="Project photo 13" style="width: 90%; max-width: 1600px; height: auto;">
+</section>
+
+<div class="project-nav">
+  <a href="project-01Tulou.html">← Previous</a>
+  <a href="project-03Ground.html">Next →</a>
+</div>
+
+<footer id="contact">
+  <span class="label">I have a project</span>
+  <div class="contact-row">
+    <a href="mailto:mengxuedeng@outlook.com">mengxuedeng@outlook.com</a>
+    <a href="tel:+46 0760633882">+46 0760633882</a>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 MX STUDIO</span>
+  </div>
+</footer>
+
+</body>
+</html>
